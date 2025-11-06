@@ -1,8 +1,8 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
-const authRouter = require('.routers/authRouter.js');
-const productRouter = require('./routers/productRouter')
+const authRouter = require('./routers/authRouter.js');
+const productRouter = require('./routers/productRouter.js')
 
 const PORT = process.env.PORT || 3000
 
@@ -35,3 +35,4 @@ const start = async () => {
 
 
 start()
+
