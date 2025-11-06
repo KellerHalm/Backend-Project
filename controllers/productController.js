@@ -41,16 +41,42 @@ class ProductController {
     async updateProduct(req, res) {
         try {
             const product = req.body
-            console.log(product._id)
 
             if(!product._id) {
                 res.status(400).json({ message: "ID не указан" });
             }
-
             const updateProduct = await Product.findByIdAndUpdate(product._id, product, { new: true });
 
             console.log("Товар успешно обновлен");
             return res.json(updateProduct);
+        } catch (error) {
+            return res.status(500).json({ error: error.message })
+        }
+    }
+
+    async editProduct(req, res) {
+        try {
+            const { id } = req.params
+            const { title, description, price } = req.body
+            const product = await Product.findByIdAndUpdate(
+                {
+                    _id: id,
+                    title: title,
+                    description: description,
+                    price: price
+                },
+                
+                { 
+                    new: true,
+                }
+            );      
+
+            if (!product) {
+                res.status(404).json({ message: "Товар не найден" })
+            }
+
+            res.status(200).json({ message: "Товар изменен" })
+
         } catch (error) {
             return res.status(500).json({ error: error.message })
         }
