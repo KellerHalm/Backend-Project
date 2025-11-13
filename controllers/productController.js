@@ -82,6 +82,18 @@ class ProductController {
         }
     }
 
+    async deleteProduct(req, res) {
+        try {
+            const { id } = req.params
+            const product = await Product.findByIdAndDelete(id);
+
+            return res.json({ message: 'Товар успешно удален' })
+        } catch (error) {
+            console.log(error)
+            return res.status(500).json({ error: error.message })
+        }
+    }
+
 }
 
 
