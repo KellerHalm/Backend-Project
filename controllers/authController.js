@@ -37,6 +37,11 @@ class authController {
                 password: hashPassword,
                 roles: [userRole.value]
             });
+
+            if (req.file) {
+                user.avatar = req.file.path
+            }
+
             await user.save();
 
             return res.json({ message: "Пользователь был успешно зарегистрирован" });
