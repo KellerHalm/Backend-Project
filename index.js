@@ -1,3 +1,4 @@
+const path = require('path');
 const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
@@ -20,6 +21,8 @@ app.get('/api', (req, res) => {
 
 })
 
+app.use('/uploads', express.static(path.join(__dirname, 'uploads')))
+
 
 const start = async () => {
 
@@ -35,4 +38,3 @@ const start = async () => {
 
 
 start()
-
