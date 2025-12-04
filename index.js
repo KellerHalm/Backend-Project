@@ -1,10 +1,12 @@
 const path = require('path');
 const express = require('express');
+require('dotenv').config();
 const mongoose = require('mongoose');
 const cors = require('cors');
 const authRouter = require('./routers/authRouter.js');
 const productRouter = require('./routers/productRouter.js')
 
+const MONGODB_URI = process.env.MONGODB_URI
 const PORT = process.env.PORT || 3000
 
 const app = express();
@@ -27,7 +29,7 @@ app.use('/uploads', express.static(path.join(__dirname, 'uploads')))
 const start = async () => {
 
     try {
-        await mongoose.connect('mongodb://127.0.0.1:27017/backend');
+        await mongoose.connect(MONGODB_URI);
         app.listen(PORT, () => console.log(`Сервер запущен на порту ${PORT}`))
     } catch (e) {
         console.log("Ошибка при запуске сервера", e)

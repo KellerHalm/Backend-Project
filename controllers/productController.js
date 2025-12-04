@@ -5,8 +5,22 @@ class ProductController {
 
     async addProduct(req, res) {
         try {
-            const { title, description, price } = req.body
-            const product = await Product.create({ title, description, price })
+            const { title, description, price, img } = req.body
+            const product = await Product.create({ title, description, price, img })
+
+            if (req.files) {
+
+                let path = " ";
+
+                req.files.forEach(element => {
+                    path += element.path + ","
+                });
+
+                path = path.substring(0, path.lastIndexOf(","))
+
+                product.images = path
+
+            }
 
             res.json("Продукт успешно добавлен", product);
         } catch (error) {
