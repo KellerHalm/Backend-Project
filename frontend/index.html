@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Каталог товаров</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header>
+    <h1>Магазин товаров</h1>
+    <p id="auth-status">Вы не авторизованы</p>
+    <!-- Форма входа можно добавить позже -->
+  </header>
+
+  <main>
+    <div id="products-container" class="products-grid">
+      <!-- Товары будут подгружаться сюда -->
+    </div>
+
+    <div id="product-detail" class="product-detail hidden">
+      <button id="back-btn">← Назад к товарам</button>
+      <div id="detail-content"></div>
+    </div>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>

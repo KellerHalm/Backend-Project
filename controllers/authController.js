@@ -47,17 +47,20 @@ class authController {
 
             await user.save();
 
-            const mailOption = {
-                from: process.env.EMAIL_USER,
+
+            try {
+                await transporter.sendMail ({
+                from: "asda",
                 to: email,
                 subject: "Подтверждение регистрации",
                 html: 
                 `<h1>Добро пожаловать</h1>
                 <p>Пожалуйста подтвердите email, перейдя по ссылке: </p>
                 `
+            });
+            } catch (mailError) {
+                console.log("Ошибка при отправке email:", mailError);
             }
-
-            await transporter.sendMail(mailOption);
 
             return res.json({ message: "Пользователь был успешно зарегистрирован" });
         } catch (e) {
