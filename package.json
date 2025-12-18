@@ -3,13 +3,13 @@
   "version": "1.0.0",
   "description": "",
   "keywords": [],
-  "homepage": "https://github.com/LordVays/Backend-Project#readme",
+  "homepage": "https://github.com/KellerHalm/Backend-Project#readme",
   "bugs": {
-    "url": "https://github.com/LordVays/Backend-Project/issues"
+    "url": "https://github.com/KellerHalm/Backend-Project/issues"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/LordVays/Backend-Project.git"
+    "url": "git+https://github.com/KellerHalm/Backend-Project.git"
   },
   "license": "ISC",
   "author": "",
@@ -20,7 +20,6 @@
   },
   "dependencies": {
     "bcryptjs": "^3.0.2",
-    "bootstrap": "^5.3.8",
     "cors": "^2.8.5",
     "dotenv": "^17.2.3",
     "express": "^5.1.0",

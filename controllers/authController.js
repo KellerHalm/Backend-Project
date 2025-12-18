@@ -1,9 +1,11 @@
+require('dotenv').config();
 const User = require('../models/User.js');
 const Role = require('../models/Role.js');
+const transporter = require('../mail.js');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const { validationResult } = require('express-validator');
-const { secret } = require("../config.js")
+const { secret } = require("../config.js");
 
 const generateAccessToken = (id, roles) => {
     const payload = { id, roles };
@@ -21,7 +23,7 @@ class authController {
                 });
             }
 
-            const { username, password } = req.body;
+            const { username, password, email } = req.body;
             const candidate = await User.findOne({ username });
 
             if (candidate) {
@@ -35,6 +37,7 @@ class authController {
             const user = new User({
                 username,
                 password: hashPassword,
+                email: email,
                 roles: [userRole.value]
             });
 
@@ -43,6 +46,18 @@ class authController {
             }
 
             await user.save();
+
+            const mailOption = {
+                from: process.env.EMAIL_USER,
+                to: email,
+                subject: "Подтверждение регистрации",
+                html: 
+                `<h1>Добро пожаловать</h1>
+                <p>Пожалуйста подтвердите email, перейдя по ссылке: </p>
+                `
+            }
+
+            await transporter.sendMail(mailOption);
 
             return res.json({ message: "Пользователь был успешно зарегистрирован" });
         } catch (e) {
