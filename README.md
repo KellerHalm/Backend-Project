@@ -12,7 +12,7 @@ cd Backend-Project
 # Установите зависимости
 npm install
 
-# Создайте .env файл
+# Создайте .env файл, и добавьте строку подключения к MongoDB и укажите PORT
 
 # Запуск сервера
 npm run start
