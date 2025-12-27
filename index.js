@@ -5,6 +5,7 @@ const mongoose = require('mongoose');
 const cors = require('cors');
 const authRouter = require('./routers/authRouter.js');
 const productRouter = require('./routers/productRouter.js');
+const cartRouter = require('./routers/cartRouter.js');
 
 const MONGODB_URI = process.env.MONGODB_URI
 const PORT = process.env.PORT || 3000
@@ -16,6 +17,7 @@ app.use(express.json());
 
 app.use("/auth", authRouter);
 app.use("/api", productRouter);
+app.use("/api/cart", cartRouter);
 
 app.get('/api', (req, res) => {
 
